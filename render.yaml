@@ -1,3 +1,10 @@
+headers:
+  - path: /*
+    name: X-Frame-Options
+    value: sameorigin
+  - path: /blog/*
+    name: Cache-Control
+    value: must-revalidate 
  # A static site
   - type: web
     name: my-blog
@@ -16,12 +23,12 @@
         name: X-Frame-Options
         value: sameorigin
     routes:
-      - type: redirect
-        source: /old
-        destination: /new
-      - type: rewrite
-        source: /a/*
-        destination: /a
+  - type: redirect
+    source: /a
+    destination: /b
+  - type: rewrite
+    source: /app/*
+    destination: /app
     ipAllowList: # Optional (defaults to allow all); Scale and Enterprise workspaces only
       - source: 203.0.113.4/30
         description: office
